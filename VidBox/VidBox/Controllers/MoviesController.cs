@@ -43,6 +43,7 @@ namespace VidBox.Controllers
             var genres = _context.Genres.ToList();
             var viewModel = new MovieViewModel
             {
+                Movie = new Movie(),
                 Genres = genres
             };
             return View(viewModel);
@@ -62,6 +63,7 @@ namespace VidBox.Controllers
             return View(viewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -78,6 +80,7 @@ namespace VidBox.Controllers
             return RedirectToAction("Index", "Movies");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Movie movie)
         {
             if (!ModelState.IsValid)

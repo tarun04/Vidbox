@@ -40,6 +40,7 @@ namespace VidBox.Controllers
             var membershipTypes = _context.MembershipTypes.ToList();
             var viewModel = new CustomerViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
             return View(viewModel);
@@ -59,6 +60,7 @@ namespace VidBox.Controllers
             return View(viewModel);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
             if(!ModelState.IsValid)
@@ -75,6 +77,7 @@ namespace VidBox.Controllers
             return RedirectToAction("Index", "Customers");
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Update(Customer customer)
         {
             if (!ModelState.IsValid)
