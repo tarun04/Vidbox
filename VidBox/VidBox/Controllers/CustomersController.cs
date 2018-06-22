@@ -38,7 +38,7 @@ namespace VidBox.Controllers
         public ActionResult New()
         {
             var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerViewModel
             {
                 MembershipTypes = membershipTypes
             };
@@ -51,7 +51,7 @@ namespace VidBox.Controllers
 
             if (customer == null)
                 return HttpNotFound();
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerViewModel
             {
                 Customer = customer,
                 MembershipTypes = _context.MembershipTypes.ToList()

@@ -6,7 +6,7 @@ using VidBox.Models;
 
 namespace VidBox.ViewModels
 {
-    public class NewCustomerViewModel
+    public class CustomerViewModel
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
         public Customer Customer { get; set; }
