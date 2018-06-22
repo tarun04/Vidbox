@@ -64,6 +64,15 @@ namespace VidBox.Controllers
         [HttpPost]
         public ActionResult Create(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieViewModel
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("New", viewModel);
+            }
             _context.Movies.Add(movie);
             _context.SaveChanges();
             return RedirectToAction("Index", "Movies");
@@ -71,6 +80,15 @@ namespace VidBox.Controllers
         [HttpPost]
         public ActionResult Update(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieViewModel
+                {
+                    Movie = movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View("Edit", viewModel);
+            }
             var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
 
             movieInDb.Name = movie.Name;

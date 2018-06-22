@@ -61,6 +61,15 @@ namespace VidBox.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewModel = new CustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("New", viewModel);
+            }
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return RedirectToAction("Index", "Customers");
@@ -68,6 +77,15 @@ namespace VidBox.Controllers
         [HttpPost]
         public ActionResult Update(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("Edit", viewModel);
+            }
             var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
             customerInDb.Name = customer.Name;
