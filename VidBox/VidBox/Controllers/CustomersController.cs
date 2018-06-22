@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Data.Entity;
 using VidBox.Models;
+using VidBox.ViewModels;
 
 namespace VidBox.Controllers
 {
@@ -32,6 +33,16 @@ namespace VidBox.Controllers
             if (customer == null)
                 return HttpNotFound();
             return View(customer);
+        }
+        // GET : Customers/New
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomerViewModel
+            {
+                MembershipTypes = membershipTypes
+            };
+            return View(viewModel);
         }
     }
 }
