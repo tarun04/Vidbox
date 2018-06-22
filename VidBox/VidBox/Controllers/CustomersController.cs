@@ -59,19 +59,22 @@ namespace VidBox.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Save(Customer customer)
+        public ActionResult Create(Customer customer)
         {
-            if (customer.Id == 0)
-                _context.Customers.Add(customer);
-            else
-            {
-                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
+        [HttpPost]
+        public ActionResult Update(Customer customer)
+        {
+            var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
 
-                customerInDb.Name = customer.Name;
-                customerInDb.BirthDate = customer.BirthDate;
-                customerInDb.MembershipTypeId = customer.MembershipTypeId;
-                customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
-            }
+            customerInDb.Name = customer.Name;
+            customerInDb.BirthDate = customer.BirthDate;
+            customerInDb.MembershipTypeId = customer.MembershipTypeId;
+            customerInDb.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+
             _context.SaveChanges();
             return RedirectToAction("Index", "Customers");
         }
