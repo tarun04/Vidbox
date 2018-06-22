@@ -14,3 +14,5 @@
         <li>Birthdate: @Model.BirthDate.Value.ToShortDateString()</li>
     }
 </ul>
+
+@Html.ActionLink("Edit", "Edit", "Customers", new { id = Model.Id }, null)
