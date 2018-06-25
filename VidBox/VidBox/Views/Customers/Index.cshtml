@@ -12,7 +12,7 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Customer</th>
@@ -30,4 +30,13 @@ else
         </tbody>
     </table>
     @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers").DataTable();
+        });
+    </script>
 }

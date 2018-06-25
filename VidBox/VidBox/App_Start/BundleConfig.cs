@@ -22,8 +22,13 @@ namespace VidBox
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                      "~/Scripts/Datatables/jquery.datatables.js",
+                      "~/Scripts/Datatables/datatables.bootstrap.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css"));
         }
     }
