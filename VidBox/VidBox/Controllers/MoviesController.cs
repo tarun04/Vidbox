@@ -22,22 +22,31 @@ namespace VidBox.Controllers
         {
             _context.Dispose();
         }
-        // GET: Customers
+        // GET: Movies
         public ActionResult Index()
         {
             var movies = _context.Movies.Include(m => m.Genre).ToList();
-            return View(movies);
+
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("Index", movies);
+            
+            return View("GuestIndex", movies);
         }
-        // GET: Customers/Details/{id}
+        // GET: Movies/Details/{id}
         public ActionResult Details(int id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 return HttpNotFound();
-            return View(movie);
+
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("Details", movie);
+
+            return View("GuestDetails", movie);
         }
-        // GET : Customers/New
+        // GET : Movies/New
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -48,7 +57,8 @@ namespace VidBox.Controllers
             };
             return View(viewModel);
         }
-        // GET : Customers/Edit/{id}
+        // GET : Movies/Edit/{id}
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.Single(m => m.Id == id);
@@ -64,6 +74,7 @@ namespace VidBox.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Create(Movie movie)
         {
             if (!ModelState.IsValid)
@@ -81,6 +92,7 @@ namespace VidBox.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult Update(Movie movie)
         {
             if (!ModelState.IsValid)
