@@ -579,7 +579,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61162</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61162/</IISUrl>
+          <IISUrl>https://localhost:44331/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
