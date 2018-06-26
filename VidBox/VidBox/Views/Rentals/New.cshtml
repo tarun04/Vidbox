@@ -94,9 +94,10 @@
                     method: "post",
                     data: vm
                 }).done(function () {
-                    window.location = "/Rentals/New"
+                    toastr.success("Rentals successfully recorded.");
+                    setTimeout(function () { window.location = "/Rentals/New"; }, 1000);
                 }).fail(function () {
-
+                    toastr.error("Something unexpected happened.");
                 });
             });
         });

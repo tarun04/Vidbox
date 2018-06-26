@@ -29,11 +29,15 @@ namespace VidBox
             bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
                       "~/Scripts/typeahead.bundle.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                      "~/Scripts/toastr.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/typeahead.css"));
+                      "~/Content/typeahead.css",
+                      "~/Content/toastr.css"));
         }
     }
 }
