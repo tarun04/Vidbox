@@ -277,6 +277,10 @@
     <Compile Include="Migrations\201806261445165_AddRental.Designer.cs">
       <DependentUpon>201806261445165_AddRental.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806261453262_UpdateMovieRental.cs" />
+    <Compile Include="Migrations\201806261453262_UpdateMovieRental.Designer.cs">
+      <DependentUpon>201806261453262_UpdateMovieRental.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -584,6 +588,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806261445165_AddRental.resx">
       <DependentUpon>201806261445165_AddRental.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806261453262_UpdateMovieRental.resx">
+      <DependentUpon>201806261453262_UpdateMovieRental.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
