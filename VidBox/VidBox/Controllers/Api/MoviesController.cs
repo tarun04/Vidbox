@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http;
 using VidBox.Dtos;
@@ -18,11 +19,16 @@ namespace VidBox.Controllers.Api
             _context = new ApplicationDbContext();
         }
         // GET : api/movies
-        public IHttpActionResult GetMovies()
+        public IHttpActionResult GetMovies(string query = null)
         {
-            var movies = _context.Movies.ToList().Select(Mapper.Map<Movie, MovieDto>);
+            var moviesQuery = _context.Movies.Include(m => m.Genre).Include(m => m.Genre).Where(m => m.NumberAvailable > 0);
 
-            return Ok(movies);
+            if (!String.IsNullOrWhiteSpace(query))
+                moviesQuery = moviesQuery.Where(m => m.Name.Contains(query));
+
+            var movieDtos =  moviesQuery.ToList().Select(Mapper.Map<Movie, MovieDto>);
+
+            return Ok(movieDtos);
         }
         // GET : api/movies/{id}
         public IHttpActionResult GetMovie(int id)
